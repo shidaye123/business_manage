@@ -43,7 +43,7 @@
       #{shippingId,jdbcType=INTEGER}, #{payment,jdbcType=DECIMAL}, #{paymentType,jdbcType=INTEGER}, 
       #{postage,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{paymentTime,jdbcType=TIMESTAMP}, 
       #{sendTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{closeTime,jdbcType=TIMESTAMP}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+      now(), now())
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.neuedu.pojo.Order" >
     <!--
@@ -62,8 +62,7 @@
       send_time = #{sendTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
       close_time = #{closeTime,jdbcType=TIMESTAMP},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -85,4 +84,42 @@
     payment_time, send_time, end_time, close_time, create_time, update_time
     from neuedu_order
   </select>
+
+<!--  自己-->
+<!--  orderList-->
+  <select id="getOrderListByUserId" parameterType="int" resultMap="BaseResultMap">
+
+    select * from neuedu_order where user_id = #{userId}
+
+  </select>
+
+<!--  订单详情-->
+  <select id="getOrderDetailByOrderNo" parameterType="map" resultMap="BaseResultMap">
+
+    select * from neuedu_order where order_no = #{orderNo}
+
+  </select>
+
+<!--  取消订单-->
+  <delete id="cancelOrder" parameterType="map">
+
+    delete from neuedu_order where order_no = #{orderNo}
+
+  </delete>
+
+<!--  超时要关闭的订单-->
+  <select id="selectOrderByCreateTime" resultMap="BaseResultMap">
+
+    select * from neuedu_order where  <![CDATA[create_time <= #{time}]]> and status =10
+
+  </select>
+
+<!--  发货-->
+  <update id="send" parameterType="map">
+
+    update neuedu_order set status = 40 where order_no = #{orderNo}
+
+  </update>
+
 </mapper>
+<!--        <![CDATA[create_time <= #{time}]]>-->

@@ -19,6 +19,8 @@
     <result column="sub_images" property="subImages" jdbcType="LONGVARCHAR" />
     <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
   </resultMap>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -81,4 +83,121 @@
     update_time, sub_images, detail
     from neuedu_product
   </select>
+  
+<!--  自己-->
+  
+  <select id="findByPage" parameterType="map" resultMap="BaseResultMap">
+    
+    select * from neuedu_product
+    <where>
+      <if test="searchKey!=null">
+        name like #{searchKey}
+      </if>
+    </where>
+    
+  </select>
+  <select id="findPagecounts" resultType="java.lang.Integer">
+
+    select count(*) from neuedu_product
+
+  </select>
+
+  <delete id="deleteById" parameterType="java.lang.Integer">
+
+    delete from neuedu_product where id = #{id}
+
+  </delete>
+
+  <select id="findCategory" resultType="com.neuedu.pojo.Category">
+
+    select id,name
+    from neuedu_category
+    where parent_id = 0
+
+  </select>
+
+  <insert id="insertAll" parameterType="java.util.Map">
+
+    insert into
+    neuedu_product(category_id,name,subtitle,main_image,detail,price,stock,status,create_time,update_time,sub_images)
+    values (#{categoryId},#{name},#{subtitle},#{mainImage},#{detail},#{price},#{stock},1,now(),now(),#{subImages})
+
+  </insert>
+
+  <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+    select * from neuedu_product where id = #{id}
+
+  </select>
+
+  <update id="update" parameterType="java.util.Map">
+
+    update neuedu_product set
+
+    <if test="_parameter.name!=null">
+      name = #{name},
+    </if>
+    <if test="_parameter.subtitle!=null">
+      subtitle = #{subtitle},
+    </if>
+    <if test="_parameter.price">
+      price = #{price},
+    </if>
+    <if test="_parameter.stock!=null">
+      stock = #{stock},
+    </if>
+    <if test="_parameter.detail!=null">
+      detail = #{detail},
+    </if>
+    <if test="_parameter.categoryId!=null">
+      category_id = #{categoryId},
+    </if>
+    <if test="_parameter.mainImage!=null">
+      main_image = #{mainImage},
+    </if>
+    <if test="_parameter.subImages!=null">
+      sub_images = #{subImages},
+    </if>
+    update_time = now()
+    where id = #{id}
+
+  </update>
+
+
+  <select id="findNameById" parameterType="java.lang.Integer" resultType="java.lang.String">
+
+    select main_image from neuedu_product where id = #{id}
+
+  </select>
+
+
+<!--  上下架-->
+  <update id="grounding" parameterType="java.lang.Integer">
+
+    update neuedu_product set status = 2 where id = #{id}
+
+  </update>
+  <update id="undercarriage" parameterType="java.lang.Integer">
+
+    update neuedu_product set status = 1 where id = #{id}
+
+  </update>
+
+<!--  商品分页搜索，模糊搜索-->
+  <select id="keySearch" parameterType="string" resultMap="BaseResultMap">
+
+    select * from neuedu_product where name like #{searchKey}
+
+  </select>
+
+
+<!--  测试-->
+
+  <select id="findA" resultMap="BaseResultMap">
+
+    select * from neuedu_product
+
+  </select>
+
+
 </mapper>

@@ -40,7 +40,7 @@
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, 
       #{receiverPhone,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, #{receiverProvince,jdbcType=VARCHAR}, 
       #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
-      #{receiverZip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      #{receiverZip,jdbcType=VARCHAR}, now(), now()
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.neuedu.pojo.Shipping" >
@@ -55,11 +55,9 @@
       receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
       receiver_province = #{receiverProvince,jdbcType=VARCHAR},
       receiver_city = #{receiverCity,jdbcType=VARCHAR},
-      receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
       receiver_address = #{receiverAddress,jdbcType=VARCHAR},
       receiver_zip = #{receiverZip,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -81,4 +79,35 @@
     receiver_city, receiver_district, receiver_address, receiver_zip, create_time, update_time
     from neuedu_shipping
   </select>
+
+
+<!--  自己-->
+<!--  添加地址-->
+  <select id="getAllShipping" parameterType="int" resultMap="BaseResultMap">
+
+    select * from neuedu_shipping where user_id = #{userId}
+
+  </select>
+
+<!--  删除地址-->
+  <delete id="deleteAdress" parameterType="map">
+
+    delete from neuedu_shipping where user_id = #{userId} and id = #{id}
+
+  </delete>
+
+<!--  查看选中地址信息-->
+  <select id="getDetailAdress" parameterType="map" resultMap="BaseResultMap">
+
+    select * from neuedu_shipping where id = #{id} and user_id = #{userId}
+
+  </select>
+
+<!--  获取地址列表-->
+  <select id="getShippingList" parameterType="int" resultMap="BaseResultMap">
+
+    select * from neuedu_shipping where user_id = #{userId}
+
+  </select>
+
 </mapper>

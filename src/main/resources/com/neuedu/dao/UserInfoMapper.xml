@@ -18,6 +18,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="ip" property="ip" jdbcType="VARCHAR" />
   </resultMap>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -77,4 +78,19 @@
     update_time, ip
     from neuedu_user
   </select>
+
+
+<!--  自己-->
+  <select id="findByUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
+    
+    select count(*) from neuedu_user where username = #{username}
+    
+  </select>
+
+  <select id="findByUsernameAndPassword" parameterType="java.util.Map" resultMap="BaseResultMap">
+
+    select * from neuedu_user where username = #{username} and password = #{password}
+
+  </select>
+  
 </mapper>

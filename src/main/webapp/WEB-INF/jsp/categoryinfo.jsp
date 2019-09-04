@@ -51,18 +51,18 @@
         		color: white;
         	}
         	.head{
-        		width: 80px;
+        		width: 90px;
         		color: #125291;
         	}
         	.data{
-        		width: 80px;
+        		width: 90px;
         		height: 23px;
         		font-size: 12px;
         	}
         	#delete{
         		color: white;
         		font-size: 15px;
-        		margin-left: 15px;
+        		margin-left: 20px;
         	}
         	#delete:hover{
         		color: red;
@@ -70,45 +70,61 @@
         	#update{
         		color: white;
         		font-size: 15px;
-        		margin-left: 15px;
+        		margin-left: 20px;
         	}
         	#update:hover{
         		color: #067df4;
+        	}
+        	#insert{
+        		width: 100px;
+        		height: 30px;
+        		border-radius: 6px;
+        		position: absolute;
+        		right: 15px;
+        		bottom: 20px;
+        		border: 2px solid deepskyblue;
+        		background: none;
+        		text-align: center;
+        	}
+        	#insert:hover{
+        		background: deepskyblue;
+        	}
+        	#insertA{
+        		color: white;
         	}
         </style>
     </head>
     <body>
     	<div id="container">
     		<div id="container-top">
-    			<span id="username">欢迎  ${username}</span>
-    			<span id="title">员工信息</span>
+    			<span id="username">欢迎  ${user.username}</span>
+    			<span id="title">种类信息</span>
+    			<button id="insert"><a id="insertA" href="/user/category/insert">添加</a></button>
     		</div>
     		<div id="container-middle">
     			<table id="table" border="1px" bordercolor="red">
     				<tr>
-    					<th class="head">员工编号</th>
-    					<th class="head">员工姓名</th>
-    					<th class="head">职位</th>
-    					<th class="head">领导编号</th>
-    					<th class="head">入职日期</th>
-    					<th class="head">工资</th>
-    					<th class="head">奖金</th>
-    					<th class="head">部门编号</th>
+    					<th class="head">类别编号</th>
+    					<th class="head">父类编号</th>
+    					<th class="head">类别名称</th>
+    					<th class="head">类别状态</th>
+    					<th class="head">排序编号</th>
+    					<th class="head">创建时间</th>
+    					<th class="head">更新时间</th>
     					<th class="head">操作</th>
     				</tr>
-    				<c:forEach  items="${empList}" var="emp">
+    				<c:forEach  items="${categoryList}" var="category">
     					<tr>
-    						<td class="data">${emp.empno}</td>
-    						<td class="data">${emp.ename}</td>
-    						<td class="data">${emp.job}</td>
-    						<td class="data">${emp.mgr}</td>
-    						<td class="data">${emp.hiredate}</td>
-    						<td class="data">${emp.sal}</td>
-    						<td class="data">${emp.comm}</td>
-    						<td class="data">${emp.deptno}</td>
+    						<td class="data">${category.id}</td>
+    						<td class="data">${category.parentId}</td>
+    						<td class="data">${category.name}</td>
+    						<td class="data">${category.status}</td>
+    						<td class="data">${category.sortOrder}</td>
+    						<td class="data">${category.createTime}</td>
+    						<td class="data">${category.updateTime}</td>
     						<td class="data">
-    							<a href="/delete?empno=${emp.empno}" id="delete">删</a>
-    							<a href="/update?empno=${emp.empno}" id="update">改</a>
+    							<a href="/user/category/delete?id=${category.id}" id="delete">删</a>
+    							<a href="/user/category/update?id=${category.id}" id="update">改</a>
     						</td>
     					</tr>
     				</c:forEach>

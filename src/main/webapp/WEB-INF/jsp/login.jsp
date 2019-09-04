@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>员工信息</title>
+        <title>管理员登录</title>
         <style>
         	*{
         		padding: 0;
@@ -99,7 +99,7 @@
     		</div>
     		<div id="container-middle">
     			<div id="login">
-    				<form action="/login1">
+    				<form action="" method="post">
     					<input type="text" name="username" id="username" placeholder="Username" />
     					<input type="password" name="password" id="password" placeholder="Password" /><br />
     					<input type="submit" id="submit" value="Login" />

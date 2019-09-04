@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<div id="app" v-bind:id="pid">
+
+    <button @click="getProducts">获取商品列表</button>
+
+    <ul>
+        <li v-for="(item,index) of productList":key="item.id">
+            {{index}}-{{item.name}}
+        </li>
+    </ul>
+
+
+    <p v-if="message">{{userInfo.username}}</p>
+
+    <button @click="showAndHidden">隐藏/显示</button>
+
+    {{fullname}}
+
+    <input v-model="firstname">
+    <input v-model="lastname">
+
+    {{count}}
+
+    <ul>
+        <li v-for="(item,index) of product">{{item}}{{index}}</li>
+    </ul>
+
+    <div>
+        <input v-model="data">
+        <button @click="getList">点击添加列表</button>
+        <ul>
+            <todo-item @delete-item="handleDelete" v-for="(item,index) of list":key="index":content="item":index="index"></todo-item>
+        </ul>
+    </div>
+
+    <a href="http://www.baidu.com" v-on:click="let_stop">百度</a>
+
+    <div v-on:click="div1">
+        <div v-on:click="div2">
+            <div v-on:click.stop="div3">
+                div3
+            </div>
+        </div>
+    </div>
+
+    <div>
+<!--        <router-link to="/home/666">home</router-link>-->
+<!--        <router-link to="/list">list</router-link>-->
+
+
+        <router-link to="/user/10/detail">详情</router-link>
+        <router-link to="/user/10/plist">列表</router-link>
+
+        <router-view></router-view>
+    </div>
+
+</div>
+
+
+<script src="js/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="js/myVue.js"></script>
+
+</body>
+</html>

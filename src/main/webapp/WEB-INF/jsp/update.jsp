@@ -20,7 +20,7 @@
         		margin-top: 100px;
         		margin-left: 380px;
         		background: black;
-        		opacity: 0.5;
+        		opacity: 0.7;
         		position: relative;
         	}
         	#container-top{
@@ -54,7 +54,7 @@
         		width: 300px;
         		position: relative;
         	}
-        	#empno{
+        	#id{
         		width: 200px;
         		height: 30px;
         		border-radius: 6px;
@@ -66,7 +66,7 @@
         		color: white;
         		text-align: center;
         	}
-        	#ename{
+        	#parentId{
         		width: 200px;
         		height: 30px;
         		border-radius: 6px;
@@ -78,7 +78,7 @@
         		text-align: center;
         		color: white;
         	}
-        	#job{
+        	#name{
         		width: 200px;
         		height: 30px;
         		border-radius: 6px;
@@ -90,7 +90,7 @@
         		text-align: center;
         		color: white;
         	}
-        	#mgr{
+        	#status{
         		width: 200px;
         		height: 30px;
         		border-radius: 6px;
@@ -102,7 +102,7 @@
         		text-align: center;
         		color: white;
         	}
-        	#hiredate{
+        	#sortOrder{
         		width: 200px;
         		height: 30px;
         		border-radius: 6px;
@@ -114,7 +114,7 @@
         		text-align: center;
         		color: white;
         	}
-        	#sal{
+        	#createTime{
         		width: 200px;
         		height: 30px;
         		border-radius: 6px;
@@ -126,25 +126,13 @@
         		text-align: center;
         		color: white;
         	}
-        	#comm{
+        	#updateTime{
         		width: 200px;
         		height: 30px;
         		border-radius: 6px;
         		position: absolute;
         		right: 15px;
         		top: 270px;
-        		border: 2px solid white;
-        		background: none;
-        		text-align: center;
-        		color: white;
-        	}
-        	#deptno{
-        		width: 200px;
-        		height: 30px;
-        		border-radius: 6px;
-        		position: absolute;
-        		right: 15px;
-        		top: 310px;
         		border: 2px solid white;
         		background: none;
         		text-align: center;
@@ -183,56 +171,56 @@
         	#s1{
         		position: absolute;
         		left: 15px;
-        		top: 33px;
+        		top: 35px;
         		color: white;
         		font-size: 13px;
         	}
         	#s2{
         		position: absolute;
         		left: 15px;
-        		top: 73px;
+        		top: 75px;
         		color: white;
         		font-size: 13px;
         	}
         	#s3{
         		position: absolute;
         		left: 15px;
-        		top: 113px;
+        		top: 115px;
         		color: white;
         		font-size: 13px;
         	}
         	#s4{
         		position: absolute;
         		left: 15px;
-        		top: 153px;
+        		top: 155px;
         		color: white;
         		font-size: 13px;
         	}
         	#s5{
         		position: absolute;
         		left: 15px;
-        		top: 193px;
+        		top: 195px;
         		color: white;
         		font-size: 13px;
         	}
         	#s6{
         		position: absolute;
         		left: 15px;
-        		top: 233px;
+        		top: 235px;
         		color: white;
         		font-size: 13px;
         	}
         	#s7{
         		position: absolute;
         		left: 15px;
-        		top: 273px;
+        		top: 275px;
         		color: white;
         		font-size: 13px;
         	}
         	#s8{
         		position: absolute;
         		left: 15px;
-        		top: 313px;
+        		top: 315px;
         		color: white;
         		font-size: 13px;
         	}
@@ -244,29 +232,27 @@
     <body>
     	<div id="container">
     		<div id="container-top">
-    			<span id="username">欢迎  ${username}</span>
+    			<span id="username">欢迎  ${user.username}</span>
     			<span id="title">修改信息</span>
     		</div>
     		<div id="container-middle">
     			<div id="updata">
-    				<form action="/update1">
-    					<span id="s1">员工编号</span>
-    					<input type="text" name="empno" id="empno" placeholder="${emp.empno}" />
-    					<span id="s2">员工姓名</span>
-    					<input type="text" name="ename" id="ename" placeholder="${emp.ename}" />
-    					<span id="s3">职&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp位</span>
-    					<input type="text" name="job" id="job" placeholder="${emp.job}" />
-    					<span id="s4">领导编号</span>
-    					<input type="text" name="mgr" id="mgr" placeholder="${emp.mgr}" />
-    					<span id="s5">入职日期</span>
-    					<input type="text" name="hiredate" id="hiredate" placeholder="${emp.hiredate}" />
-    					<span id="s6">工&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp资</span>
-    					<input type="text" name="sal" id="sal" placeholder="${emp.sal}" />
-    					<span id="s7">奖&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp金</span>
-    					<input type="text" name="comm" id="comm" placeholder="${emp.comm}" />
-    					<span id="s8">部门编号</span>
-    					<input type="text" name="deptno" id="deptno" placeholder="${emp.deptno}" />
-    					<button id="back"><a id="a1" href="/back">取消</a></button>
+    				<form action="" method="post">
+    					<span id="s1">类别编号</span>
+    					<input type="text" name="id" id="id" placeholder="${category.id}" />
+    					<span id="s2">父类编号</span>
+    					<input type="text" name="parentId" id="parentId" placeholder="${category.parentId}" />
+    					<span id="s3">类别名称</span>
+    					<input type="text" name="name" id="name" placeholder="${category.name}" />
+    					<span id="s4">类别状态</span>
+    					<input type="text" name="status" id="status" placeholder="${category.status}" />
+    					<span id="s5">排序编号</span>
+    					<input type="text" name="sortOrder" id="sortOrder" placeholder="${category.sortOrder}" />
+    					<span id="s6">创建时间</span>
+    					<input type="text" name="createTime" id="createTime" placeholder="${category.createTime}" />
+    					<span id="s7">更新时间</span>
+    					<input type="text" name="updateTime" id="updateTime" placeholder="${category.updateTime}" />
+    					<button id="back"><a id="a1" href="/user/category/back">取消</a></button>
     					<input type="submit" id="submit" value="提交"/>
     				</form>
     			</div>
